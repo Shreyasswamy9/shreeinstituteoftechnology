@@ -6,36 +6,35 @@
   <title>Photo Gallery - Shree Institute of Technology</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    #pdf-container {
-      margin-top: 30px;
-      display: none;
-      text-align: center;
-    }
-    #pdf-viewer {
-      width: 100%;
-      height: 90vh;
-      border: none;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      touch-action: auto;
-    }
-    #pdf-dropdown {
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    #close-pdf {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 15px;
-      background-color: #004aad;
-      color: white;
-      border: none;
+    details {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      cursor: pointer;
+      padding: 10px;
+      background: #f9f9f9;
     }
-    #close-pdf:hover {
-      background-color: #003380;
+
+    summary {
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .pdf-link {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+      color: #004aad;
+      text-decoration: underline;
+    }
+
+    .pdf-link:hover {
+      color: #002f6c;
     }
   </style>
 </head>
@@ -56,47 +55,32 @@
 
   <main>
     <h2>Photo Gallery</h2>
-    <p><strong>Select a publication to view:</strong></p>
-    <select id="pdf-dropdown">
-      <option value="">-- Choose a PDF --</option>
-      <option value="SHREE BOOK.pdf">📘 SHREE.pdf</option>
-      <option value="Bhovi Nigama Book.pdf">📗 Bhovi Nigama.pdf</option>
-      <option value="Aadijambava Nigamapdf.pdf">📙 Aadijambava Nigama</option>
-      <option value="Tanda nigma.pdf">📕 Tanda Nigama</option>
-    </select>
+    <p><strong>Click a title to open the full PDF:</strong></p>
 
-    <div id="pdf-container">
-      <iframe id="pdf-viewer" src="" allowfullscreen scrolling="yes" frameborder="0"></iframe>
-      <button id="close-pdf">❌ Close PDF</button>
-    </div>
+    <details>
+      <summary>📘 SHREE.pdf</summary>
+      <a href="SHREE BOOK.pdf" class="pdf-link" target="_self">📂 Open SHREE BOOK.pdf</a>
+    </details>
+
+    <details>
+      <summary>📗 Bhovi Nigama.pdf</summary>
+      <a href="Bhovi Nigama Book.pdf" class="pdf-link" target="_self">📂 Open Bhovi Nigama Book.pdf</a>
+    </details>
+
+    <details>
+      <summary>📙 Aadijambava Nigama</summary>
+      <a href="Aadijambava Nigamapdf.pdf" class="pdf-link" target="_self">📂 Open Aadijambava Nigamapdf.pdf</a>
+    </details>
+
+    <details>
+      <summary>📕 Tanda Nigama</summary>
+      <a href="Tanda nigma.pdf" class="pdf-link" target="_self">📂 Open Tanda nigma.pdf</a>
+    </details>
   </main>
 
   <footer>
     <p>Contact us at info@shreeinstitute.edu.in | +91-9591311818</p>
     <p>&copy; 2025 Shree Institute of Technology. All rights reserved.</p>
   </footer>
-
-  <script>
-    const dropdown = document.getElementById('pdf-dropdown');
-    const container = document.getElementById('pdf-container');
-    const viewer = document.getElementById('pdf-viewer');
-    const closeBtn = document.getElementById('close-pdf');
-
-    dropdown.addEventListener('change', function () {
-      if (this.value) {
-        viewer.src = this.value;
-        container.style.display = 'block';
-      } else {
-        viewer.src = '';
-        container.style.display = 'none';
-      }
-    });
-
-    closeBtn.addEventListener('click', function () {
-      viewer.src = '';
-      container.style.display = 'none';
-      dropdown.value = '';
-    });
-  </script>
 </body>
 </html>
