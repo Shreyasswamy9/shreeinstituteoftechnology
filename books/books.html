@@ -9,16 +9,33 @@
     #pdf-container {
       margin-top: 30px;
       display: none;
+      text-align: center;
     }
     #pdf-viewer {
       width: 100%;
       height: 90vh;
       border: none;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: auto;
     }
     #pdf-dropdown {
       padding: 10px;
       font-size: 16px;
       margin-top: 10px;
+    }
+    #close-pdf {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 15px;
+      background-color: #004aad;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #close-pdf:hover {
+      background-color: #003380;
     }
   </style>
 </head>
@@ -49,7 +66,8 @@
     </select>
 
     <div id="pdf-container">
-      <object id="pdf-viewer" type="application/pdf" data=""></object>
+      <iframe id="pdf-viewer" src="" allowfullscreen scrolling="yes" frameborder="0"></iframe>
+      <button id="close-pdf">❌ Close PDF</button>
     </div>
   </main>
 
@@ -62,15 +80,22 @@
     const dropdown = document.getElementById('pdf-dropdown');
     const container = document.getElementById('pdf-container');
     const viewer = document.getElementById('pdf-viewer');
+    const closeBtn = document.getElementById('close-pdf');
 
     dropdown.addEventListener('change', function () {
       if (this.value) {
-        viewer.setAttribute('data', this.value);
+        viewer.src = this.value;
         container.style.display = 'block';
       } else {
-        viewer.removeAttribute('data');
+        viewer.src = '';
         container.style.display = 'none';
       }
+    });
+
+    closeBtn.addEventListener('click', function () {
+      viewer.src = '';
+      container.style.display = 'none';
+      dropdown.value = '';
     });
   </script>
 </body>
