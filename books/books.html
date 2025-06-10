@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Books - Shree Institute of Technology</title>
+  <title>Photo Gallery - Shree Institute of Technology</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Optional: Style for the PDF viewer */
+    #pdf-viewer {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -20,13 +30,32 @@
     <a href="../contact/contact.html">Contact</a>
   </nav>
   <main>
-    <h2>Books & Publications</h2>
+    <h2>Photo Gallery</h2>
     <p>Explore our featured publications and educational materials.</p>
-    <a class="pdf-link" href="SHREE BOOK.pdf" target="_blank">📘 SHREE BOOK.pdf</a>
-    <!--img src="../images/SHREE_BOOK_page4.jpeg" alt="Sample page from Shree Book"-->
-    <a class="pdf-link" href="Bhovi Nigama Book.pdf" target="_blank">📗 Bhovi Nigama Book.pdf</a>
-    <!--img src="../images/Bhovi_Nigama_Book_page0.jpeg" alt="Bhovi Book page sample"-->
+    <label for="pdf-dropdown"><strong>Select a book to view:</strong></label>
+    <select id="pdf-dropdown">
+      <option value="">-- Choose a PDF --</option>
+      <option value="SHREE BOOK.pdf">📘 SHREE.pdf</option>
+      <option value="Bhovi Nigama Book.pdf">📗 Bhovi Nigama.pdf</option>
+      <option value="Aadijambava Nigamapdf.pdf">📙Aadijambava Nigama</option>
+      <option value="Tanda nigmapdf.pdf">📕 Tanda nigama</option>
+
+    </select>
+    <iframe id="pdf-viewer"></iframe>
   </main>
+  <script>
+    const dropdown = document.getElementById('pdf-dropdown');
+    const viewer = document.getElementById('pdf-viewer');
+    dropdown.addEventListener('change', function() {
+      if (this.value) {
+        viewer.src = this.value;
+        viewer.style.display = 'block';
+      } else {
+        viewer.src = '';
+        viewer.style.display = 'none';
+      }
+    });
+  </script>
   <footer>
     <p>Contact us at info@shreeinstitute.edu.in | +91-9876543210</p>
     <p>&copy; 2025 Shree Institute of Technology. All rights reserved.</p>
