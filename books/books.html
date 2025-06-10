@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Photo Gallery - Shree Institute of Technology</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style.css" />
   <style>
-    /* Style for the PDF viewer */
+    #pdf-container {
+      margin-top: 30px;
+      display: none;
+    }
     #pdf-viewer {
       width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-      display: none;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
+      height: 90vh;
+      border: none;
+    }
+    #pdf-dropdown {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="../images/logo.jpg" alt="Shree Institute Logo" class="logo">
+    <img src="../images/logo.jpg" alt="Shree Institute Logo" class="logo" />
     <h1>Shree Institute of Technology</h1>
     <p>Empowering Education. Building the Future.</p>
   </header>
+
   <nav>
     <a href="../index.html">Home</a>
     <a href="../about/about.html">About</a>
@@ -31,43 +36,42 @@
     <a href="../admissions/admissions.html">Eligibility</a>
     <a href="../contact/contact.html">Contact</a>
   </nav>
+
   <main>
     <h2>Photo Gallery</h2>
-    <p>Explore our featured publications and educational materials.</p>
-    <label for="pdf-dropdown"><strong>Select a book to view:</strong></label>
+    <p><strong>Select a publication to view:</strong></p>
     <select id="pdf-dropdown">
       <option value="">-- Choose a PDF --</option>
       <option value="SHREE BOOK.pdf">📘 SHREE.pdf</option>
       <option value="Bhovi Nigama Book.pdf">📗 Bhovi Nigama.pdf</option>
-      <option value="Aadijambava Nigamapdf.pdf">📙Aadijambava Nigama</option>
-      <option value="Tanda nigmapdf.pdf">📕 Tanda nigama</option>
+      <option value="Aadijambava Nigamapdf.pdf">📙 Aadijambava Nigama</option>
+      <option value="Tanda nigma.pdf">📕 Tanda Nigama</option>
     </select>
-    
-    <!-- Updated iframe -->
-    <iframe 
-      id="pdf-viewer"
-      scrolling="yes"
-      sandbox
-      allowfullscreen
-      style="width:100%; height:600px; border:1px solid #ccc; margin-top:20px; display:none; overflow:auto; -webkit-overflow-scrolling:touch;">
-    </iframe>
+
+    <div id="pdf-container">
+      <object id="pdf-viewer" type="application/pdf" data=""></object>
+    </div>
   </main>
-  <script>
-    const dropdown = document.getElementById('pdf-dropdown');
-    const viewer = document.getElementById('pdf-viewer');
-    dropdown.addEventListener('change', function() {
-      if (this.value) {
-        viewer.src = this.value;
-        viewer.style.display = 'block';
-      } else {
-        viewer.src = '';
-        viewer.style.display = 'none';
-      }
-    });
-  </script>
+
   <footer>
     <p>Contact us at info@shreeinstitute.edu.in | +91-9591311818</p>
     <p>&copy; 2025 Shree Institute of Technology. All rights reserved.</p>
   </footer>
+
+  <script>
+    const dropdown = document.getElementById('pdf-dropdown');
+    const container = document.getElementById('pdf-container');
+    const viewer = document.getElementById('pdf-viewer');
+
+    dropdown.addEventListener('change', function () {
+      if (this.value) {
+        viewer.setAttribute('data', this.value);
+        container.style.display = 'block';
+      } else {
+        viewer.removeAttribute('data');
+        container.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
